@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Sofía</title>
+
+<style>
+:root {
+    --dark-bg: #1a1a1a;
+    --flower-yellow: #ffeb3b;
+    --stem-green: #388e3c;
+    --heart-orange: #ff5722;
+    --text-color: #ffffff;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: var(--dark-bg);
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+.scene {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+/* TEXTO */
+.message {
+    position: absolute;
+    top: 20%;
+    width: 100%;
+    text-align: center;
+    font-size: 3em;
+    font-weight: bold;
+    color: var(--text-color);
+    text-shadow: 0 0 10px rgba(255,255,255,0.5);
+    z-index: 10;
+}
+
+/* ================= FLORES (BIEN ORIENTADAS) ================= */
+
+.flower {
+    position: absolute;
+    bottom: 0;
+    width: 60px;
+    height: 260px;
+    z-index: 5;
+}
+
+/* TALLO */
+.flower-stem {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 6px;
+    background: linear-gradient(to bottom, #66bb6a, #2e7d32);
+    transform: translateX(-50%);
+    border-radius: 10px;
+}
+
+/* CABEZA ARRIBA */
+.flower-head {
+    position: absolute;
+    left: 50%;
+    width: 26px;
+    height: 26px;
+    background: radial-gradient(circle, #fff9c4, #fbc02d);
+    border-radius: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+}
+
+/* PÉTALOS */
+.flower-head::before,
+.flower-head::after,
+.flower::before,
+.flower::after {
+    content: "";
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    background: var(--flower-yellow);
+    border-radius: 50%;
+}
+
+.flower-head::before {
+    top: -20px;
+    left: 0;
+}
+
+.flower-head::after {
+    top: 20px;
+    left: 0;
+}
+
+.flower::before {
+    left: calc(50% - 26px);
+}
+
+.flower::after {
+    left: calc(50% + 0px);
+}
+
+/* POSICIONES Y ALTURAS */
+.flower:nth-child(2) { left: 30%; }
+.flower:nth-child(2) .flower-stem { height: 150px; }
+.flower:nth-child(2) .flower-head,
+.flower:nth-child(2)::before,
+.flower:nth-child(2)::after { bottom: 150px; }
+
+.flower:nth-child(3) { left: 40%; }
+.flower:nth-child(3) .flower-stem { height: 100px; }
+.flower:nth-child(3) .flower-head,
+.flower:nth-child(3)::before,
+.flower:nth-child(3)::after { bottom: 100px; }
+
+.flower:nth-child(4) { left: 50%; }
+.flower:nth-child(4) .flower-stem { height: 200px; }
+.flower:nth-child(4) .flower-head,
+.flower:nth-child(4)::before,
+.flower:nth-child(4)::after { bottom: 200px; }
+
+.flower:nth-child(5) { left: 60%; }
+.flower:nth-child(5) .flower-stem { height: 120px; }
+.flower:nth-child(5) .flower-head,
+.flower:nth-child(5)::before,
+.flower:nth-child(5)::after { bottom: 120px; }
+
+.flower:nth-child(6) { left: 70%; }
+.flower:nth-child(6) .flower-stem { height: 180px; }
+.flower:nth-child(6) .flower-head,
+.flower:nth-child(6)::before,
+.flower:nth-child(6)::after { bottom: 180px; }
+
+/* ================= CORAZONES (ORIGINALES, 20) ================= */
+
+.heart-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.heart {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: var(--heart-orange);
+    transform: rotate(-45deg);
+    opacity: 0;
+    z-index: 20;
+    animation: float-up 6s infinite ease-out;
+    bottom: 0;
+}
+
+.heart::before,
+.heart::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: var(--heart-orange);
+    border-radius: 50%;
+}
+
+.heart::before { top: -10px; left: 0; }
+.heart::after { top: 0; left: 10px; }
+
+@keyframes float-up {
+    0% { transform: translateY(0) rotate(-45deg) scale(0.5); opacity: 0; }
+    10% { opacity: 1; transform: translateY(-50px) rotate(-45deg) scale(1); }
+    90% { opacity: 0.5; transform: translateY(-80vh) rotate(-45deg) scale(0.8); }
+    100% { transform: translateY(-100vh) rotate(-45deg) scale(0.5); opacity: 0; }
+}
+
+/* 20 corazones */
+.heart:nth-child(1) { left: 10%; animation-delay: 0s; }
+.heart:nth-child(2) { left: 25%; animation-delay: 0.3s; width: 15px; height: 15px; }
+.heart:nth-child(3) { left: 45%; animation-delay: 0.6s; }
+.heart:nth-child(4) { left: 60%; animation-delay: 0.9s; width: 25px; height: 25px; }
+.heart:nth-child(5) { left: 85%; animation-delay: 1.2s; }
+.heart:nth-child(6) { left: 5%; animation-delay: 1.5s; width: 18px; height: 18px; }
+.heart:nth-child(7) { left: 35%; animation-delay: 1.8s; }
+.heart:nth-child(8) { left: 75%; animation-delay: 2.1s; width: 12px; height: 12px; }
+.heart:nth-child(9) { left: 15%; animation-delay: 2.4s; }
+.heart:nth-child(10) { left: 55%; animation-delay: 2.7s; width: 22px; height: 22px; }
+.heart:nth-child(11) { left: 90%; animation-delay: 3s; }
+.heart:nth-child(12) { left: 20%; animation-delay: 3.3s; width: 16px; height: 16px; }
+.heart:nth-child(13) { left: 40%; animation-delay: 3.6s; }
+.heart:nth-child(14) { left: 70%; animation-delay: 3.9s; width: 28px; height: 28px; }
+.heart:nth-child(15) { left: 30%; animation-delay: 4.2s; }
+.heart:nth-child(16) { left: 50%; animation-delay: 4.5s; width: 14px; height: 14px; }
+.heart:nth-child(17) { left: 80%; animation-delay: 4.8s; }
+.heart:nth-child(18) { left: 65%; animation-delay: 5.1s; width: 20px; height: 20px; }
+.heart:nth-child(19) { left: 5%; animation-delay: 5.4s; }
+.heart:nth-child(20) { left: 95%; animation-delay: 5.7s; width: 17px; height: 17px; }
+</style>
+</head>
+
+<body>
+<div class="scene">
+    <div class="message">Sofía te amo</div>
+
+    <div class="flower"><div class="flower-head"></div><div class="flower-stem"></div></div>
+    <div class="flower"><div class="flower-head"></div><div class="flower-stem"></div></div>
+    <div class="flower"><div class="flower-head"></div><div class="flower-stem"></div></div>
+    <div class="flower"><div class="flower-head"></div><div class="flower-stem"></div></div>
+    <div class="flower"><div class="flower-head"></div><div class="flower-stem"></div></div>
+
+    <div class="heart-container">
+        <div class="heart"></div><div class="heart"></div><div class="heart"></div><div class="heart"></div><div class="heart"></div>
+        <div class="heart"></div><div class="heart"></div><div class="heart"></div><div class="heart"></div><div class="heart"></div>
+        <div class="heart"></div><div class="heart"></div><div class="heart"></div><div class="heart"></div><div class="heart"></div>
+        <div class="heart"></div><div class="heart"></div><div class="heart"></div><div class="heart"></div><div class="heart"></div>
+    </div>
+</div>
+</body>
+</html>
